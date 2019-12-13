@@ -1,0 +1,29 @@
+server:
+  port: 10010
+
+logging:
+  file: C:/RCI/logs/user_manager_service.log
+  level:
+    root: ERROR
+    com:
+      fsd: INFO
+    org:
+      hibernate:
+        SQL: ERROR
+        type:
+          descriptor:
+            sql:
+              BasicBinder: ERROR
+
+spring:
+  application:
+    name: user-manager-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
