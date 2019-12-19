@@ -54,11 +54,20 @@ public class UserManagerController {
         return new ResponseEntity<>(updatedUser, HttpStatus.CREATED);
     }
 
-    @ApiOperation(value = "Delete User. Test Purpose Only")
+    @ApiOperation(value = "Delete User")
     @DeleteMapping("/deleteUser/{id}")
     public void deleteUser(@PathVariable("id") Long id) throws Exception {
         log.info("UserManagerController >> deleteUser >> {}", id);
         service.deleteUserById(id);
         log.info("User Deleted.");
+    }
+
+    @ApiOperation(value = "Checks if the user is assigned to any Task or Project before deletion")
+    @GetMapping("/checkIfUserAssigned/{id}")
+    public ResponseEntity<Boolean> checkIfUserAssigned(@PathVariable("id") Long id) throws Exception {
+        log.info("UserManagerController >> checkIfUserAssigned >> {}", id);
+        boolean isUserAssigned = service.checkIfUserAssigned(id);
+        log.info("User Deleted.");
+        return new ResponseEntity<Boolean>(isUserAssigned, HttpStatus.OK);
     }
 }

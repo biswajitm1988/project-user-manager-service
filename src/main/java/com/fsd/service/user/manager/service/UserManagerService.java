@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,5 +40,9 @@ public class UserManagerService {
     public void deleteUserById(Long id) {
         log.info("Deleting the User from Database for {}",id);
         repository.deleteById(id);
+    }
+
+    public boolean checkIfUserAssigned(Long id) {
+        return (repository.checkIfUserAssignedToProject(id)>0l) || (repository.checkIfUserAssignedToTask(id)>0l);
     }
 }
